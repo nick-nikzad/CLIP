@@ -39,25 +39,29 @@ use_cuda: true  # Option to use GPU
 pretrained_model: "openai/clip-vit-base-patch32"  # Pretrained CLIP model; can be set to other options as well
 ```
 
-## Time and memory footprint of computing the similarity metric (CLIP)
-
+## Q2 (a): Time and memory footprint of computing the similarity metric (CLIP)
+Efficient memory usage and rapid inference speed position the CLIP model as a favourable and effective choice for measuring image-text similarity.
 ### Time/GPU
 As the primary components of the code involve pre-processing and computing CLIP metric values, we present the average time taken for these two sections along with GPU memory consumption. (The average is calculated over all image-text pairs).
 | Part | Time | GPU |
 | ------| -----|---------
-| Avg Time taken for pre-processing (image scaling, tokenizer) | 0.0632 sec|---|
-|  Avg Time taken for CLIP metric   | 0.0443 sec   |---|
+| Avg Time taken for pre-processing (image scaling, tokenizer) | 0.0518 sec|---|
+|  Avg Time taken for CLIP metric   | 0.0471 sec   |---|
 | -----------------|-------------------|---|
-| **Total**   | 0.1075 sec   | 860 MB|
+| **Total**   | 0.0988 sec   | 860 MB|
 
 ### Memory consumtion
-The figures below depict the main function's line-by-line and temporal memory (RAM) footprints.
+The figures below depict the main function's line-by-line and temporal memory (RAM) footprints. The peak memory usage for this experiment is 1658MB. 
 <p align="center">
   <img src="imgs/memory.png" alt="(a) Memory footprint line by line" width="45%">
   <img src="imgs/memory-time.png" alt="(b) Memory footprint over time" width="45%">
 </p>
 
+## Q2 (b): Scaling up
 
+To scale up the code for processing approximately ~100 million text-image pairs, I recommend the following improvements:
+1- Implementing batch processing.
+2- Leveraging distributed processing across ample GPU clusters.
 
 
 
