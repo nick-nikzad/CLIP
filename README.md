@@ -72,5 +72,4 @@ To scale up the code for processing approximately ~100 million text-image pairs,
 3. **Quantization**: Explore quantization techniques like quantization aware training (QAT) to represent embeddings with fewer bits, further reducing computation and memory footprint.
 4. **Data Partitioning**: Split the dataset into smaller chunks and process them independently, then aggregate the results.
 
-
-
+## Q3: Curate data for text-to-image model training
