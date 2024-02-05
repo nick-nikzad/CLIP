@@ -1,13 +1,13 @@
 # CLIP Model for Text-Image Similarity
-This repository contains the implementation of a CLIP (Contrastive Language-Image Pre-training) model for calculating similarity between text and images. 
+This repository contains the implementation of a CLIP (Contrastive Language-Image Pre-training) model for calculating the similarity between text and images. 
 CLIP is a powerful model that learns to understand images and text in a joint embedding space, allowing for cross-modal similarity comparisons.
 
 ## CLIP (Contrastive Language-Image Pre-training):
 This repository provides an interface for utilizing the pre-trained CLIP model to measure the similarity between textual queries and images.
 CLIP, developed by OpenAI, is a groundbreaking vision-language model designed for understanding and reasoning across different modalities, namely text and images. 
 Unlike traditional methods that treat vision and language separately, CLIP learns a unified embedding space where images and text share a common representation. 
-This allows the model to seamlessly bridge the semantic gap between images and their associated textual descriptions. The innovation of the model is contrastive training approach,
-where positive (image, text pair) and negative (other images, and text) samples are employed to learn a scoring function in-order to obtain a representation of the data. 
+This allows the model to seamlessly bridge the semantic gap between images and their associated textual descriptions. The innovation of the model is a contrastive training approach,
+where positive (image, text pair) and negative (other images, and text) samples are employed to learn a scoring function in order to obtain a representation of the data. 
  
 <p align="center"><img src="imgs/clip2.png" align="center" ></p>
 
@@ -74,3 +74,4 @@ To scale up the code for processing approximately ~100 million text-image pairs,
 4. **Data Partitioning**: Split the dataset into smaller chunks and process them independently, then aggregate the results.
 
 ## Q3: Curate data for text-to-image model training
+We can use the CLIP metric to compute the error signal for training the text-to-image model. In particular, the generated image 
