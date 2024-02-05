@@ -1,0 +1,10 @@
+numpy
+torch>=1.4.0
+torchvision
+tqdm
+pandas
+Pillow
+pyyaml
+transformers
+memory-profiler
+requests
