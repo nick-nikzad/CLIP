@@ -9,7 +9,7 @@ Unlike traditional methods that treat vision and language separately, CLIP learn
 This allows the model to seamlessly bridge the semantic gap between images and their associated textual descriptions. The innovation of the model is contrastive training approach,
 where positive (image, text pair) and negative (other images, and text) samples are employed to learn a scoring function in-order to obtain a representation of the data. 
  
-<p align="center"><img src="imgs/clip2.webp" align="center" width="450"></p>
+<p align="center"><img src="imgs/clip2.png" align="center" ></p>
 
 Overall, CLIP's **multimodal capabilities**, **pre-trained representations**, and **versatility in handling diverse tasks** make it an excellent choice as a similarity metric for text-image relationships. 
 Its inherent ability to bridge the gap between vision and language aligns well with the requirements of tasks involving cross-modal understanding and similarity measurements.
