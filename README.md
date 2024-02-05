@@ -60,8 +60,8 @@ The figures below depict the main function's line-by-line and temporal memory (R
 ## Q2 (b): Scaling up
 
 To scale up the code for processing approximately ~100 million text-image pairs, I recommend the following improvements:
-1- Implementing batch processing.
-2- Leveraging distributed processing across ample GPU clusters.
+1. Implementing batch processing.
+2. Leveraging distributed processing across ample GPU clusters. HuggingFace's "Accelerate" library would be a fine tool for this purpose.
 
 
 
