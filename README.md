@@ -23,7 +23,7 @@ pip install -r requirements.txt
 ```
 The **transformers** library is incorporated, borrowed and installed from Hugging Face. Additionally, the **memory_profiler** tool is employed to assess the code's memory footprint.
 ### Device
-This experiment utilizes an **NVIDIA RTX A2000 Laptop GPU (4G)** card for accelerated processing.
+This experiment utilizes an **NVIDIA RTX A2000 Laptop GPU (4G)** card for accelerated processing. All time and memory footprints are specific to this computational resource.
 
 ### Model
 We use pretrained **"openai/clip-vit-base-patch32"** CLIP model. The model uses a ViT-B/32 Transformer architecture as an image encoder and uses a masked self-attention Transformer as a text encoder.
@@ -42,13 +42,13 @@ pretrained_model: "openai/clip-vit-base-patch32"  # Pretrained CLIP model; can b
 ## Time and memory footprint of computing the similarity metric (CLIP)
 
 
-| Class | Name |
+| Part | Time |
 | ------| -----|
-| 0   | Neither roof or solar|
-| 1   | roof   |
-| 2   | solar   |
-| 3   | roof/solar   |
-| 4   | unknown   |
+| Avg Time taken for pre-processing (image scaling, tokenizer) | 0.0632 sec|
+|  Avg Time taken for CLIP metric   | 0.0443 sec   |
+| -------------  | -------------------   |
+| Total   | 0.1075 sec   |
+
 
 - To construct the train, validation, and test sets, the patches extracted from the input pairs of image and mask are split into three sets using probabilities of 0.7, 0.2, and 0.1, respectively. 
 The number of patches allocated to each set is determined as:  
