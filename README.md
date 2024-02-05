@@ -46,16 +46,9 @@ pretrained_model: "openai/clip-vit-base-patch32"  # Pretrained CLIP model; can b
 | ------| -----|
 | Avg Time taken for pre-processing (image scaling, tokenizer) | 0.0632 sec|
 |  Avg Time taken for CLIP metric   | 0.0443 sec   |
-| -------------  | -------------------   |
-| Total   | 0.1075 sec   |
+| -----------------|-------------------|
+| **Total**   | 0.1075 sec   |
 
 
-- To construct the train, validation, and test sets, the patches extracted from the input pairs of image and mask are split into three sets using probabilities of 0.7, 0.2, and 0.1, respectively. 
-The number of patches allocated to each set is determined as:  
 
-| train | validation | test| TOTAL |
-| ------| ------|------|------|
-| 28876 | 5565| 2872| 37313|
-
-## Usage
 
