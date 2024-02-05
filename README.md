@@ -43,7 +43,7 @@ pretrained_model: "openai/clip-vit-base-patch32"  # Pretrained CLIP model; can b
 Efficient memory usage and rapid inference speed position the CLIP model as a favourable and effective choice for measuring image-text similarity.
 ### Time/GPU
 As the primary components of the code involve pre-processing and computing CLIP metric values, we present the average time taken for these two sections along with GPU memory consumption. (The average is calculated over all image-text pairs).
-| Part | Time | GPU |
+| Part | Time per (image, text) | GPU per (image, text)|
 | ------| -----|---------
 | Avg Time taken for pre-processing (image scaling, tokenizer) | 0.0518 sec|---|
 |  Avg Time taken for CLIP metric   | 0.0471 sec   |---|
@@ -68,6 +68,7 @@ $$
 
 To scale up the code for processing approximately ~100 million text-image pairs, the following improvements can be considered:
 1. **Batch processing**: Simultaneously processing multiple image-text pairs in batches can significantly enhance the overall processing speed and reduce the overhead associated with individual predictions.
+- Considering the current GPU card capacity (4GB) and GPU usage (860MB per image-text), utilizing a batch size of 4 is expected to yield a 4x increase in processing speed compared to the current experiment.
 2. **Parallelization/ Cloud computing**: Leveraging distributed processing across ample GPU clusters. HuggingFace's "Accelerate" library would be a fine tool for this purpose.
 3. **Quantization**: Explore quantization techniques like quantization aware training (QAT) to represent embeddings with fewer bits, further reducing computation and memory footprint.
 4. **Data Partitioning**: Split the dataset into smaller chunks and process them independently, then aggregate the results.
