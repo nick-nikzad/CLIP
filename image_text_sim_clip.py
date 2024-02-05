@@ -18,6 +18,7 @@ from PIL import Image
 from transformers import CLIPProcessor, CLIPModel
 from memory_profiler import profile
 import yaml
+os.environ['CUDA_VISIBLE_DEVICES'] = "0"
 
 # Loading config
 def load_config(config_path):
@@ -27,7 +28,7 @@ def load_config(config_path):
 
 # Use CUDA if available
 def set_device(use_cuda):
-    return torch.device("cuda" if use_cuda and torch.cuda.is_available() else "cpu")
+    return torch.device("cuda:0" if use_cuda and torch.cuda.is_available() else "cpu")
 
 
 # Function to extract the image name from the URL

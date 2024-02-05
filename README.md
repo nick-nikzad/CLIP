@@ -41,14 +41,16 @@ pretrained_model: "openai/clip-vit-base-patch32"  # Pretrained CLIP model; can b
 
 ## Time and memory footprint of computing the similarity metric (CLIP)
 
+### Time/GPU
+As the primary components of the code involve pre-processing and computing CLIP metric values, we present the average time taken for these two sections along with GPU memory consumption. (The average is calculated over all image-text pairs).
+| Part | Time | GPU |
+| ------| -----|---------
+| Avg Time taken for pre-processing (image scaling, tokenizer) | 0.0632 sec|---|
+|  Avg Time taken for CLIP metric   | 0.0443 sec   |---|
+| -----------------|-------------------|---|
+| **Total**   | 0.1075 sec   | 860 MB|
 
-| Part | Time |
-| ------| -----|
-| Avg Time taken for pre-processing (image scaling, tokenizer) | 0.0632 sec|
-|  Avg Time taken for CLIP metric   | 0.0443 sec   |
-| -----------------|-------------------|
-| **Total**   | 0.1075 sec   |
+### Memory consumtion
+The memory (RAM) footprint of the code are illustrated in below figures.
 
-
-
-
+<p align="center"><img src="imgs/memory.png" align="center" ></p>
