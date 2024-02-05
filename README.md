@@ -51,6 +51,13 @@ As the primary components of the code involve pre-processing and computing CLIP 
 | **Total**   | 0.1075 sec   | 860 MB|
 
 ### Memory consumtion
-The memory (RAM) footprint of the code are illustrated in below figures.
+The figures below depict the main function's line-by-line and temporal memory (RAM) footprints.
+<p align="center">
+  <img src="imgs/memory.png" alt="(a) Memory footprint line by line" width="45%">
+  <img src="imgs/memory-time.png" alt="(b) Memory footprint over time" width="45%">
+</p>
 
-<p align="center"><img src="imgs/memory.png" align="center" ></p>
+
+
+
+
