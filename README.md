@@ -34,7 +34,7 @@ A configuration file (`config.yaml`) is included to adjust code parameters:
 
 ```yaml
 csv_path: "./challenge_set/challenge_set.csv"  # Path to the CSV file containing image URLs and captions
-image_path: "url"  # Option to retrieve images from the network using provided URLs or read from the local drive
+image_path: "./challenge_set/" ## "url"  # Option to retrieve images from the network using provided URLs or read from the local drive
 use_cuda: true  # Option to use GPU
 pretrained_model: "openai/clip-vit-base-patch32"  # Pretrained CLIP model; can be set to other options as well
 ```
