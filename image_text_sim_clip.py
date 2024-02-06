@@ -64,6 +64,7 @@ def main(config_path='./config.yaml'):
     clip_time =[]
     for i, (url, caption) in enumerate(zip(image_urls, image_captions)):
         
+        # read the input image from either 'url' or local drive
         if config['image_path'].lower() == 'url':
             image = Image.open(requests.get(url,stream=True).raw)
         else:
@@ -71,15 +72,19 @@ def main(config_path='./config.yaml'):
             image = Image.open(os.path.join(config['image_path'], extract_image_name(url)+'.png'))
         
         start_time = time.time()
-
+        
+        # scaling, normalizing and tokenzing
         inputs = pre_processor(text=[caption], images=image, return_tensors="pt",
                                padding=True, truncation = True)
+        
+        # put on the device
         inputs.to(device)
         
         process_time.append(time.time()-start_time)
         
         start_time = time.time()
-
+        
+        # compute the CLIP model output
         outputs = model(**inputs)
         
         clip_time.append(time.time()-start_time)
@@ -95,7 +100,7 @@ def main(config_path='./config.yaml'):
     print(' Avg Time taken for pre-processing (image scaling, tokenizer) = {} sec'.format(np.mean(process_time)))
     print(' Avg Time taken for CLIP metric = {} sec'.format(np.mean(clip_time)))
 
-    # Append the updated DataFrame to the challenge_set CSV file
+    # save the updated DataFrame to the challenge_set CSV file
     df.to_csv(csv_path, header=True, index=False)
     return
 
