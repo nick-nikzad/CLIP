@@ -38,6 +38,7 @@ image_path: "./challenge_set/" ## "url"  # Option to retrieve images from the ne
 use_cuda: true  # Option to use GPU
 pretrained_model: "openai/clip-vit-base-patch32"  # Pretrained CLIP model; can be set to other options as well
 ```
+**Note:** Due to network latency when reading images from the provided URLs, all results are based on reading from the local drive (i.e. image_path: "./challenge_set/").
 
 ## Q2 (a): Time and memory footprint of computing the similarity metric (CLIP)
 Efficient memory usage and rapid inference speed position the CLIP model as a favourable and effective choice for measuring image-text similarity.
@@ -70,8 +71,9 @@ To scale up the code for processing approximately ~100 million text-image pairs,
 1. **Batch processing**: Simultaneously processing multiple image-text pairs in batches can significantly enhance the overall processing speed and reduce the overhead associated with individual predictions.
 - Considering the current GPU card capacity (4GB) and GPU usage (860MB per image-text), utilizing a batch size of 4 is expected to yield a 4x increase in processing speed compared to the current experiment.
 2. **Parallelization/ Cloud computing**: Leveraging distributed processing across ample GPU clusters. HuggingFace's "Accelerate" library would be a fine tool for this purpose.
-3. **Quantization**: Explore quantization techniques like quantization aware training (QAT) to represent embeddings with fewer bits, further reducing computation and memory footprint.
+3. **Quantization**: Explore quantization techniques to represent embeddings with fewer bits, further reducing computation and memory footprint.
 4. **Data Partitioning**: Split the dataset into smaller chunks and process them independently, then aggregate the results.
 
 ## Q3: Curate data for text-to-image model training
-We can use the CLIP metric to compute the error signal for training the text-to-image model. In particular, the generated image 
+We can use the CLIP metric to calculate the dissimilarity (1-similarity) between the provided input text and the generated image. The computed dissimilarity (error) can then be employed for training/fine-tuning a text-to-image model. Specifically, the following pipeline can be employed to supervise the training of a text-to-image model (e.g., stable diffusion): 
+<p align="center"><img src="imgs/q3.png" align="center" ></p>
