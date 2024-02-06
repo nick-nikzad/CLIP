@@ -9,7 +9,7 @@ Unlike traditional methods that treat vision and language separately, CLIP learn
 This allows the model to seamlessly bridge the semantic gap between images and their associated textual descriptions. The innovation of the model is a contrastive training approach,
 where positive (image, text pair) and negative (other images, and text) samples are employed to learn a scoring function in order to obtain a representation of the data. 
  
-<p align="center"><img src="imgs/clip2.png" align="center" ></p>
+<p align="center"><img src="readme_imgs/clip2.png" align="center" ></p>
 
 Overall, CLIP's **multimodal capabilities**, **pre-trained representations**, and **versatility in handling diverse tasks** make it an excellent choice as a similarity metric for text-image relationships. 
 Its inherent ability to bridge the gap between vision and language aligns well with the requirements of tasks involving cross-modal understanding and similarity measurements.
@@ -57,8 +57,8 @@ As the primary components of the code involve pre-processing and computing CLIP 
 ### Memory consumtion
 The figures below depict the main function's line-by-line and temporal memory (RAM) footprints. The peak memory usage for this experiment is 1658MB. 
 <p align="center">
-  <img src="imgs/memory.png" alt="(a) Memory footprint line by line" width="45%">
-  <img src="imgs/memory-time.png" alt="(b) Memory footprint over time" width="45%">
+  <img src="readme_imgs/memory.png" alt="(a) Memory footprint line by line" width="45%">
+  <img src="readme_imgs/memory-time.png" alt="(b) Memory footprint over time" width="45%">
 </p>
 
 ## Q2 (b): Scaling up
@@ -79,4 +79,4 @@ To scale up the code for processing approximately ~100 million text-image pairs,
 
 ## Q3: Curate data for text-to-image model training
 We can use the CLIP metric to calculate the dissimilarity (1-similarity) between the provided input text and the generated image. The computed dissimilarity (error) can then be employed for training/fine-tuning a text-to-image model. Specifically, the following pipeline can be employed to supervise the training of a text-to-image model (e.g., stable diffusion): 
-<p align="center"><img src="imgs/q3.png" align="center" ></p>
+<p align="center"><img src="readme_imgs/q3.png" align="center" ></p>
