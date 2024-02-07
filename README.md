@@ -27,8 +27,7 @@ This experiment utilizes an **NVIDIA RTX A2000 Laptop GPU (4G)** card for accele
 
 ### Model
 We use pretrained **"openai/clip-vit-base-patch32"** CLIP model. The model uses a ViT-B/32 Transformer architecture as an image encoder and uses a masked self-attention Transformer as a text encoder.
-These encoders are trained to maximize the similarity of (image, text) pairs via a contrastive loss. However, other pretrained CLIP models are also applicable (e.g. "laion/CLIP-ViT-g-14-laion2B-s12B-b42K", "openai/clip-vit-large-patch14", "openai/clip-vit-large-patch14-336") by modifying the config file.
-
+These encoders are trained to maximize the similarity of (image, text) pairs via a contrastive loss. However, other pretrained CLIP models are also applicable (e.g. "laion/CLIP-ViT-g-14-laion2B-s12B-b42K", "openai/clip-vit-large-patch14", "openai/clip-vit-large-patch14-336") by modifying the config file. Besides CLIP variants, alternative methods such as **SigLIP** (Sigmoid Loss for Language Image Pre-Training, e.g. "google/siglip-base-patch16-224") are viable options. The key difference lies in the training loss; SigLIP doesn't necessitate a global view of all pairwise similarities of images and texts within a batch. Instead, unlike the softmax used in CLIP, it applies the sigmoid activation function to logits.
 ### Config file
 A configuration file (`config.yaml`) is included to adjust code parameters:
 
