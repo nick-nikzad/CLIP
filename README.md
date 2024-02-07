@@ -45,13 +45,13 @@ python image_text_sim_clip.py --config "path-to-config-file"
 ## Q2 (a): Time and memory footprint of computing the similarity metric (CLIP)
 Efficient memory usage and rapid inference speed position the CLIP model as a favourable and effective choice for measuring image-text similarity.
 ### Time/GPU
-As the primary components of the code involve pre-processing and computing CLIP metric values, we present the average time taken for these two sections along with GPU memory consumption. (The average is calculated over all image-text pairs).
-| Part | Time per (image, text) | GPU per (image, text)|
-| ------| -----|---------
-| Avg Time taken for pre-processing (image scaling, tokenizer) | 0.0518 sec|---|
-|  Avg Time taken for CLIP metric   | 0.0471 sec   |---|
-| -----------------|-------------------|---|
-| **Total**   | 0.0988~0.1sec   | 860 MB|
+As the primary components of the code involve pre-processing and computing CLIP metric values, we present the average time per (image,text) taken for these two sections along with GPU memory consumption. (The average is calculated over all image-text pairs).
+| Part | Time-no batch |Time- batch 10 (image size 800) | GPU- no batch| GPU- batch 10|
+| ------| -----|---------|-----|------|
+| Avg Time taken for pre-processing (image scaling, tokenizer) | 0.0518 sec|0.0469 sec|-----|
+|  Avg Time taken for CLIP metric   | 0.0471 sec   |0.0128 sec|-----|
+| -----------------|-------------------|---|----|----------|
+| **Total**   | 0.0988~0.1sec| 0.0597~0.6 sec  | 860 MB|2304 MB|
 
 ### Memory consumtion
 The figures below depict the main function's line-by-line and temporal memory (RAM) footprints. The peak memory usage for this experiment is 1658MB. 
