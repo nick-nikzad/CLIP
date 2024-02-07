@@ -36,22 +36,28 @@ csv_path: "./challenge_set/challenge_set.csv"  # Path to the CSV file containing
 image_path: "./challenge_set/" ## "url"  # Option to retrieve images from the network using provided URLs or read from the local drive
 use_cuda: true  # Option to use GPU
 pretrained_model: "openai/clip-vit-base-patch32"  # Pretrained CLIP model; can be set to other options as well
+batch_size: 10 ## batch size
+img_resize: 800 ## imgae resizing for batch processing
 ```
 **Note:** Due to network latency when reading images from the provided URLs, all results are based on reading from the local drive (i.e. image_path: "./challenge_set/").
-### Run
+### Run without batch processing
 ```bash
-python image_text_sim_clip.py --config "path-to-config-file"
+python image_text_sim_clip.py --config './config.yaml' 
+```
+### Run with batch processing/ Set batch_size and image resize in the config file
+```bash
+python image_text_sim_clip_batch.py --config './config.yaml' 
 ```
 ## Q2 (a): Time and memory footprint of computing the similarity metric (CLIP)
 Efficient memory usage and rapid inference speed position the CLIP model as a favourable and effective choice for measuring image-text similarity.
 ### Time/GPU
 As the primary components of the code involve pre-processing and computing CLIP metric values, we present the average time per (image,text) taken for these two sections along with GPU memory consumption. (The average is calculated over all image-text pairs).
 | Part | Time-no batch |Time- batch 10 (image size 800) | GPU- no batch| GPU- batch 10|
-| ------| -----|---------|-----|------|
+| ------| -----|-----|-----|------|
 | Avg Time taken for pre-processing (image scaling, tokenizer) | 0.0518 sec|0.0469 sec|-----|
-|  Avg Time taken for CLIP metric   | 0.0471 sec   |0.0128 sec|-----|
-| -----------------|-------------------|---|----|----------|
-| **Total**   | 0.0988~0.1sec| 0.0597~0.6 sec  | 860 MB|2304 MB|
+|  Avg Time taken for CLIP metric| 0.0471 sec|0.0128 sec|-----|
+| ---------|--------------|---|----|----------|
+| **Total** | 0.0988~0.1sec| 0.0597~0.6 sec| 860 MB|2304 MB|
 
 ### Memory consumtion
 The figures below depict the main function's line-by-line and temporal memory (RAM) footprints. The peak memory usage for this experiment is 1658MB. 
