@@ -40,14 +40,17 @@ batch_size: 10 ## batch size
 img_resize: 800 ## imgae resizing for batch processing
 ```
 **Note:** Due to network latency when reading images from the provided URLs, all results are based on reading from the local drive (i.e. image_path: "./challenge_set/").
-### Run without batch processing
+### Run
+#### without batch processing
 ```bash
 python image_text_sim_clip.py --config './config.yaml' 
 ```
-### Run with batch processing/ Set batch_size and image resize in the config file
+Results are saved in an additional column (**'similarity_score'**) in the given csv ("./challenge_set/challenge_set.csv") file.
+#### with batch processing: Set batch_size and image resize in the config file
 ```bash
 python image_text_sim_clip_batch.py --config './config.yaml' 
 ```
+Results are saved in an additional column (**'similarity_score_batch (img-size:XXX)'**) in the given csv ("./challenge_set/challenge_set.csv") file.
 ## Q2 (a): Time and memory footprint of computing the similarity metric (CLIP)
 Efficient memory usage and rapid inference speed position the CLIP model as a favourable and effective choice for measuring image-text similarity.
 ### Time/GPU
