@@ -52,31 +52,36 @@ python image_text_sim_clip_batch.py --config './config.yaml'
 Efficient memory usage and rapid inference speed position the CLIP model as a favourable and effective choice for measuring image-text similarity.
 ### Time/GPU
 As the primary components of the code involve pre-processing and computing CLIP metric values, we present the average time per (image,text) taken for these two sections along with GPU memory consumption. (The average is calculated over all image-text pairs).
-| Part | Time-no batch |Time- batch 10 (image size 800) | GPU- no batch| GPU- batch 10|
+| Part | Time-w/o batch |Time- w batch (10,size 800) | GPU- w/o batch| GPU- w batch (10)|
 | ------| -----|-----|-----|------|
-| Avg Time taken for pre-processing (image scaling, tokenizer) | 0.0518 sec|0.0469 sec|-----|
+| Avg Time taken for pre-processing (image scaling, tokenizer) | 0.0518 sec|0.0469 sec|-----|-----|
 |  Avg Time taken for CLIP metric| 0.0471 sec|0.0128 sec|-----|
 | ---------|--------------|---|----|----------|
 | **Total** | 0.0988~0.1sec| 0.0597~0.6 sec| 860 MB|2304 MB|
 
 ### Memory consumtion
-The figures below depict the main function's line-by-line and temporal memory (RAM) footprints. The peak memory usage for this experiment is 1658MB. 
+The figures below illustrate the line-by-line and temporal memory (RAM) footprints of the main function without batch processing. The peak memory usage for this experiment, with batch processing (batch size 10 and image size of 800x800) and without batch processing, is  1534MB and 1658MB, respectively.
+
 <p align="center">
   <img src="readme_imgs/memory.png" alt="(a) Memory footprint line by line" width="45%">
   <img src="readme_imgs/memory-time.png" alt="(b) Memory footprint over time" width="45%">
 </p>
 
 ## Q2 (b): Scaling up
-Given the existing configuration (code and hardware), the anticipated duration (days) for processing 100 million image-text pairs is as follows:
+Considering the current configuration (code and hardware), the estimated processing durations (in days) for handling 100 million image-text pairs with and without batch processing are as follows:
 
-
+#### With batch processing (batch 10, image size: 800x800)
+$$
+\frac{100,000,000 \times 0.06}{60 \times 60 \times 24} = 69.44
+$$
+#### Without batch processing
 $$
 \frac{100,000,000 \times 0.1}{60 \times 60 \times 24} = 115.74
 $$
 
 
 To scale up the code for processing approximately ~100 million text-image pairs, the following improvements can be considered:
-1. **Batch processing**: Simultaneously processing multiple image-text pairs in batches can significantly enhance the overall processing speed and reduce the overhead associated with individual predictions. For batch processing, it's essential to resize all images in the batch to a consistent size before feeding them into the model.
+1. **Batch processing**: Simultaneously processing multiple image-text pairs in batches can significantly enhance the overall processing speed and reduce the overhead associated with individual predictions. For batch processing, it's essential to resize all images in the batch to a consistent size before feeding them into the model. It may impact computed scores. 
 2. **Parallelization/ Cloud computing**: Leveraging distributed processing across ample GPU clusters. HuggingFace's "Accelerate" library would be a fine tool for this purpose.
 3. **Quantization**: Explore quantization techniques to represent embeddings with fewer bits, further reducing computation and memory footprint.
 4. **Data Partitioning**: Split the dataset into smaller chunks and process them independently, then aggregate the results.
