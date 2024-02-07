@@ -70,8 +70,7 @@ $$
 
 
 To scale up the code for processing approximately ~100 million text-image pairs, the following improvements can be considered:
-1. **Batch processing**: Simultaneously processing multiple image-text pairs in batches can significantly enhance the overall processing speed and reduce the overhead associated with individual predictions.
-- Considering the current GPU card capacity (4GB) and GPU usage (860MB per image-text), utilizing a batch size of 4 is expected to yield a 4x increase in processing speed compared to the current experiment.
+1. **Batch processing**: Simultaneously processing multiple image-text pairs in batches can significantly enhance the overall processing speed and reduce the overhead associated with individual predictions. For batch processing, it's essential to resize all images in the batch to a consistent size before feeding them into the model.
 2. **Parallelization/ Cloud computing**: Leveraging distributed processing across ample GPU clusters. HuggingFace's "Accelerate" library would be a fine tool for this purpose.
 3. **Quantization**: Explore quantization techniques to represent embeddings with fewer bits, further reducing computation and memory footprint.
 4. **Data Partitioning**: Split the dataset into smaller chunks and process them independently, then aggregate the results.
