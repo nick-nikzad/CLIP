@@ -1,6 +1,8 @@
 csv_path: "./challenge_set/challenge_set.csv"  ## path to the csv file containing images' url and captions
-image_path: "url" ##"./challenge_set/" ## determining retriving images from the network using provided urls or reading from the loacl drive
+image_path: "./challenge_set/" ## "url" ## determining retriving images from the network using provided urls or reading from the loacl drive
 use_cuda: true ## using GPU 
 pretrained_model: "openai/clip-vit-base-patch32" ## the pretrained CLIP model. can be set with other options as well.
+batch_size: 10 ## batch size
+img_resize: 800 ## imgae resizing for batch processing
 
 
