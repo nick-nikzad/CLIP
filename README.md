@@ -71,6 +71,3 @@ The figures below illustrate the line-by-line and temporal memory (RAM) footprin
 </p>
 
 
-## Q3: Curate data for text-to-image model training
-We can use the CLIP metric to calculate the dissimilarity (1-similarity (scaled in [0,1]) ) between the provided input text and the generated image. The computed dissimilarity (error) can then be employed for training/fine-tuning a text-to-image model. Specifically, the following pipeline can be employed to supervise the training of a text-to-image model (e.g., stable diffusion): 
-<p align="center"><img src="readme_imgs/q3.png" align="center" ></p>
