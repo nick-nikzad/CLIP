@@ -51,7 +51,7 @@ Results are saved in an additional column (**'similarity_score'**) in the given 
 python image_text_sim_clip_batch.py --config './config.yaml' 
 ```
 Results are saved in an additional column (**'similarity_score_batch (img-size:XXX)'**) in the given csv ("./challenge_set/challenge_set.csv") file.
-## Q2 (a): Time and memory footprint of computing the similarity metric (CLIP)
+## Time and memory footprint of computing the similarity metric (CLIP)
 Efficient memory usage and rapid inference speed position the CLIP model as a favourable and effective choice for measuring image-text similarity.
 ### Time/GPU
 As the main components of the code involve pre-processing and computing CLIP metric values, we provide the average time per (image, text) taken for these two sections, along with GPU memory consumption. This includes comparisons with and without batch processing (batch size 10 and image size of 800x800). (The average is calculated over all image-text pairs).
@@ -70,24 +70,6 @@ The figures below illustrate the line-by-line and temporal memory (RAM) footprin
   <img src="readme_imgs/memory-time.png" alt="(b) Memory footprint over time" width="45%">
 </p>
 
-## Q2 (b): Scaling up
-Considering the current configuration (code and hardware), the estimated processing durations (in days) for handling 100 million image-text pairs with and without batch processing are as follows:
-
-#### With batch processing (batch 10, image size: 800x800)
-$$
-\frac{100,000,000 \times 0.06}{60 \times 60 \times 24} = 69.44
-$$
-#### Without batch processing
-$$
-\frac{100,000,000 \times 0.1}{60 \times 60 \times 24} = 115.74
-$$
-
-
-To scale up the code for processing approximately ~100 million text-image pairs, the following improvements can be considered:
-1. **Batch processing**: Simultaneously processing multiple image-text pairs in batches can significantly enhance the overall processing speed and reduce the overhead associated with individual predictions. For batch processing, it's essential to resize all images in the batch to a consistent size before feeding them into the model. It may impact computed scores. 
-2. **Parallelization/ Cloud computing**: Leveraging distributed processing across ample GPU clusters. HuggingFace's "Accelerate" library would be a fine tool for this purpose.
-3. **Quantization**: Explore quantization techniques to represent embeddings with fewer bits, further reducing computation and memory footprint.
-4. **Data Partitioning**: Split the dataset into smaller chunks and process them independently, then aggregate the results.
 
 ## Q3: Curate data for text-to-image model training
 We can use the CLIP metric to calculate the dissimilarity (1-similarity (scaled in [0,1]) ) between the provided input text and the generated image. The computed dissimilarity (error) can then be employed for training/fine-tuning a text-to-image model. Specifically, the following pipeline can be employed to supervise the training of a text-to-image model (e.g., stable diffusion): 
